@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mochila de Emergência</string>
+    <string name="canal_validade_nome">Validade dos itens</string>
+    <string name="canal_validade_descricao">Avisos sobre itens da mochila que estão perto de vencer.</string>
+    <string name="canal_revisao_nome">Revisão da mochila</string>
+    <string name="canal_revisao_descricao">Lembrete semestral para revisar os itens da mochila, mesmo os que não têm validade.</string>
+    <string name="notificacao_ressalva">Aviso automático do app. Não substitui orientação profissional de emergência.</string>
+</resources>

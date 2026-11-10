@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!--
+      Ícones adaptativos (adaptive-icon) só são aceitos em pastas -v26 pelo AAPT.
+      O minSdk 26 não permite mover para mipmap-anydpi sem quebrar o build.
+    -->
+    <issue id="ObsoleteSdkInt">
+        <ignore path="src/main/res/mipmap-anydpi-v26" />
+    </issue>
+    <!-- O app é pt-BR only de propósito; textos de interface ficam no código. -->
+    <issue id="MissingTranslation" severity="ignore" />
+</lint>

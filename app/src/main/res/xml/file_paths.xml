@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Somente o diretório de exportação do app é exposto pelo FileProvider. -->
+    <cache-path name="exports" path="exports/" />
+    <!-- Fotos temporárias da câmera (arquivo criado pelo próprio app). -->
+    <cache-path name="fotos_temp" path="fotos_temp/" />
+    <!-- Fotos dos itens (armazenamento interno privado). -->
+    <files-path name="fotos" path="fotos/" />
+</paths>

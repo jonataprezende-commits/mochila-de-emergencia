@@ -1,0 +1,464 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 3,
+    "identityHash": "20789f7803d9460d9024a78c3c57c026",
+    "entities": [
+      {
+        "tableName": "perfis",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nome` TEXT NOT NULL, `localizacao` TEXT NOT NULL, `criadoEm` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nome",
+            "columnName": "nome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localizacao",
+            "columnName": "localizacao",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "criadoEm",
+            "columnName": "criadoEm",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "itens",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `perfilId` INTEGER NOT NULL, `nome` TEXT NOT NULL, `categoria` TEXT NOT NULL, `quantidade` REAL NOT NULL, `unidade` TEXT NOT NULL, `validadeEpochDay` INTEGER, `local` TEXT NOT NULL, `observacao` TEXT NOT NULL, `marcadoComoFalta` INTEGER NOT NULL, `aRepor` INTEGER NOT NULL, `fotoArquivo` TEXT, `chaveChecklist` TEXT, `formaConsumo` TEXT NOT NULL, `criadoEm` INTEGER NOT NULL, `atualizadoEm` INTEGER NOT NULL, FOREIGN KEY(`perfilId`) REFERENCES `perfis`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "perfilId",
+            "columnName": "perfilId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nome",
+            "columnName": "nome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoria",
+            "columnName": "categoria",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantidade",
+            "columnName": "quantidade",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unidade",
+            "columnName": "unidade",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "validadeEpochDay",
+            "columnName": "validadeEpochDay",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "local",
+            "columnName": "local",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "observacao",
+            "columnName": "observacao",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "marcadoComoFalta",
+            "columnName": "marcadoComoFalta",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aRepor",
+            "columnName": "aRepor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fotoArquivo",
+            "columnName": "fotoArquivo",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "chaveChecklist",
+            "columnName": "chaveChecklist",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "formaConsumo",
+            "columnName": "formaConsumo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "criadoEm",
+            "columnName": "criadoEm",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "atualizadoEm",
+            "columnName": "atualizadoEm",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_itens_perfilId",
+            "unique": false,
+            "columnNames": [
+              "perfilId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_itens_perfilId` ON `${TABLE_NAME}` (`perfilId`)"
+          },
+          {
+            "name": "index_itens_chaveChecklist",
+            "unique": false,
+            "columnNames": [
+              "chaveChecklist"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_itens_chaveChecklist` ON `${TABLE_NAME}` (`chaveChecklist`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "perfis",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "perfilId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "documentos",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `perfilId` INTEGER NOT NULL, `titulo` TEXT NOT NULL, `tipo` TEXT NOT NULL, `uri` TEXT NOT NULL, `categoria` TEXT NOT NULL, `observacao` TEXT NOT NULL, `arquivoLocal` INTEGER NOT NULL, `criadoEm` INTEGER NOT NULL, FOREIGN KEY(`perfilId`) REFERENCES `perfis`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "perfilId",
+            "columnName": "perfilId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "titulo",
+            "columnName": "titulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tipo",
+            "columnName": "tipo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uri",
+            "columnName": "uri",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoria",
+            "columnName": "categoria",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "observacao",
+            "columnName": "observacao",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "arquivoLocal",
+            "columnName": "arquivoLocal",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "criadoEm",
+            "columnName": "criadoEm",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_documentos_perfilId",
+            "unique": false,
+            "columnNames": [
+              "perfilId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_documentos_perfilId` ON `${TABLE_NAME}` (`perfilId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "perfis",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "perfilId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "checklist",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `perfilId` INTEGER NOT NULL, `chave` TEXT NOT NULL, `nome` TEXT NOT NULL, `categoria` TEXT NOT NULL, `quantidadeBase` REAL NOT NULL, `unidade` TEXT NOT NULL, `porPessoa` INTEGER NOT NULL, `dica` TEXT NOT NULL, `ordem` INTEGER NOT NULL, `oculto` INTEGER NOT NULL, `personalizado` INTEGER NOT NULL, FOREIGN KEY(`perfilId`) REFERENCES `perfis`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "perfilId",
+            "columnName": "perfilId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "chave",
+            "columnName": "chave",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nome",
+            "columnName": "nome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoria",
+            "columnName": "categoria",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantidadeBase",
+            "columnName": "quantidadeBase",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unidade",
+            "columnName": "unidade",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "porPessoa",
+            "columnName": "porPessoa",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dica",
+            "columnName": "dica",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ordem",
+            "columnName": "ordem",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "oculto",
+            "columnName": "oculto",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "personalizado",
+            "columnName": "personalizado",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_checklist_perfilId_chave",
+            "unique": true,
+            "columnNames": [
+              "perfilId",
+              "chave"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_checklist_perfilId_chave` ON `${TABLE_NAME}` (`perfilId`, `chave`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "perfis",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "perfilId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "contatos",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `perfilId` INTEGER NOT NULL, `nome` TEXT NOT NULL, `telefone` TEXT NOT NULL, `parentesco` TEXT NOT NULL, `observacao` TEXT NOT NULL, `criadoEm` INTEGER NOT NULL, FOREIGN KEY(`perfilId`) REFERENCES `perfis`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "perfilId",
+            "columnName": "perfilId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nome",
+            "columnName": "nome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "telefone",
+            "columnName": "telefone",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentesco",
+            "columnName": "parentesco",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "observacao",
+            "columnName": "observacao",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "criadoEm",
+            "columnName": "criadoEm",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_contatos_perfilId",
+            "unique": false,
+            "columnNames": [
+              "perfilId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_contatos_perfilId` ON `${TABLE_NAME}` (`perfilId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "perfis",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "perfilId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '20789f7803d9460d9024a78c3c57c026')"
+    ]
+  }
+}
